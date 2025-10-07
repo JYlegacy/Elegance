@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Catálogo - Loja Exemplo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+	<img src="logos/logo2.webp" alt="TimeLand" class="logo">
+	<!-- COLAR ESSE CÓDIGO CASO TENHA ALGUMA FRASE PARA SUBTÍTULO DA LOGO <p class="lead">subtítulo da loja</p> -->
+	
+	<div class="categorias">
+		<button data-filter="todos">Todos</button>
+		<button data-filter="relogios">Relógios</button>
+		<button data-filter="joias">Joias</button>
+		<button data-filter="semijoias">Semi Joias</button>
+		<button data-filter="sapatos">Calçados</button>
+	</div>
+
+	<!-- Banner rotativo -->
+	<div class="banner-container">
+		<div class="banner-slide active">
+			<img src="banners/banner1.webp" alt="Banner 1">
+		</div>
+		<div class="banner-slide">
+			<img src="banners/banner2.webp" alt="Banner 2">
+		</div>
+		<div class="banner-slide">
+			<img src="banners/banner3.webp" alt="Banner 3">
+		</div>
+
+		<button class="banner-prev"></button>
+		<button class="banner-next"></button>
+		
+		<div class="banner-dots"></div>
+	</div>
+	</header>
+
+
+  <main class="catalogo" id="catalogo"></main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="close">&times;</button>
+    <button class="prev">&#10094;</button>
+    <img src="" alt="Imagem do produto">
+    <button class="next">&#10095;</button>
+    <div class="thumbnails" id="thumbnails"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="relogios.js"></script>
+  <script src="joias.js"></script>
+  <script src="semijoias.js"></script>
+  <script src="sapatos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
