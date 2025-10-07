@@ -293,16 +293,16 @@ p.lead {
 
 /* ===== BANNER ROTATIVO ===== */
 .banner-container {
-  position: relative;
+  position: relative; /* Container pai para posicionamento absoluto */
   width: 100%;
   overflow: hidden;
   margin-bottom: 30px;
+  background: #f0f0f0; /* Cor de fallback */
 }
 
 .banner-slide {
   display: none;
   width: 100%;
-  height: auto;
 }
 
 .banner-slide.active {
@@ -312,9 +312,11 @@ p.lead {
 
 .banner-slide img {
   width: 100%;
-  height: auto;
+  max-height: 80vh; /* Altura máxima de 80% da viewport */
+  height: auto; /* Altura automática para manter proporção */
   display: block;
-  object-fit: cover;
+  object-fit: contain; /* MOSTRA A IMAGEM INTEIRA sem cortar */
+  object-position: center;
 }
 
 /* ===== ESTILO DAS SETAS DO BANNER ===== */
@@ -325,8 +327,8 @@ p.lead {
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
-  background: rgba(0, 0, 0, 0.5); /* fundo escuro semi-transparente */
-  color: #ffffff; /* cor da seta */
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
   border: none;
   border-radius: 50%;
   font-size: 28px;
@@ -334,7 +336,7 @@ p.lead {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 15;
   transition: background 0.3s, transform 0.2s;
 }
 
@@ -352,13 +354,13 @@ p.lead {
   right: 16px;
 }
 
-/* Ícones de seta: usando caracteres HTML ou ícones SVG/Fonte */
+/* Ícones de seta */
 .banner-prev::before {
-  content: '‹'; /* seta “‹” - pode trocar para ← ou ícone */
+  content: '‹';
 }
 
 .banner-next::before {
-  content: '›'; /* seta “›” */
+  content: '›';
 }
 
 /* Efeito de transição */
@@ -367,15 +369,15 @@ p.lead {
   to { opacity: 1; }
 }
 
-/* ===== INDICADORES DO BANNER (PONTOS) ===== */
+/* ===== INDICADORES DO BANNER - DEFINITIVAMENTE POR CIMA ===== */
 .banner-dots {
   position: absolute;
-  bottom: 15px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
-  z-index: 5;
+  z-index: 25; /* Z-index MAIOR para ficar acima de tudo */
 }
 
 .banner-dots button {
@@ -385,16 +387,102 @@ p.lead {
   border: none;
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
+  padding: 0;
 }
 
 .banner-dots button.active {
-  background: var(--brand); /* usa o vermelho da sua paleta */
+  background: var(--brand);
   transform: scale(1.2);
 }
 
 .banner-dots button:hover {
   background: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== RESPONSIVIDADE DO BANNER ===== */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .banner-slide img {
+    max-height: 60vh; /* Altura menor para tablets */
+  }
+  
+  .banner-dots {
+    bottom: 15px;
+    gap: 6px;
+  }
+  
+  .banner-dots button {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .banner-dots button.active {
+    transform: scale(1.3);
+  }
+  
+  .banner-prev, .banner-next {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .banner-slide img {
+    max-height: 50vh; /* Altura menor para celulares */
+  }
+  
+  .banner-dots {
+    bottom: 12px;
+    gap: 5px;
+  }
+  
+  .banner-dots button {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .banner-dots button.active {
+    transform: scale(1.4);
+  }
+  
+  .banner-prev, .banner-next {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+  
+  .banner-prev {
+    left: 5px;
+  }
+  
+  .banner-next {
+    right: 5px;
+  }
+}
+
+/* Celulares muito pequenos */
+@media (max-width: 360px) {
+  .banner-slide img {
+    max-height: 40vh; /* Altura mínima */
+  }
+  
+  .banner-dots {
+    bottom: 10px;
+    gap: 4px;
+  }
+  
+  .banner-dots button {
+    width: 7px;
+    height: 7px;
+  }
+  
+  .banner-dots button.active {
+    transform: scale(1.5);
+  }
 }
 
 /* ===== BOTÃO "VER PRODUTO" ===== */
@@ -431,4 +519,298 @@ p.lead {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
+
+
+
+
+
+
+
+/* ===== RESPONSIVIDADE CORRIGIDA ===== */
+
+/* Tablets grandes e laptops pequenos */
+@media (max-width: 1024px) {
+  .catalogo {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0 15px 30px;
+  }
+  
+  .item {
+    height: 380px;
+  }
+  
+  .thumb {
+    height: 200px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  header {
+    padding: 12px 0 6px;
+  }
+  
+  header img.logo {
+    max-width: 100px;
+    margin-bottom: 8px;
+  }
+  
+  .catalogo {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas fixas */
+    gap: 15px;
+    padding: 0 10px 25px;
+    margin-top: 20px;
+  }
+  
+  .item {
+    height: 320px;
+    margin: 0; /* Remove margens extras */
+  }
+  
+  .thumb {
+    height: 160px;
+  }
+  
+  .item h3 {
+    font-size: 13px;
+    margin: 5px 4px 3px;
+    height: 2.8em;
+  }
+  
+  .price {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  
+  .ver-produto {
+    padding: 6px 12px;
+    font-size: 11px;
+    margin: 4px auto 8px;
+  }
+  
+  /* Banner em tablets */
+  .banner-container {
+    margin-bottom: 20px;
+  }
+  
+  .banner-slide img {
+    height: 200px;
+  }
+  
+  .banner-prev, .banner-next {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+}
+
+/* Celulares médios */
+@media (max-width: 480px) {
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  header {
+    padding: 10px 0 5px;
+    width: 100%;
+  }
+  
+  header img.logo {
+    max-width: 80px;
+  }
+  
+  .categorias {
+    justify-content: flex-start; /* Permite scroll horizontal */
+    padding: 0 8px;
+  }
+  
+  .categorias button {
+    padding: 10px 14px;
+    font-size: 11px;
+    flex-shrink: 0; /* Impede que os botões encolham */
+    border-bottom: 2px solid transparent;
+  }
+  
+  .catalogo {
+    grid-template-columns: repeat(2, 1fr); /* Mantém 2 colunas */
+    gap: 12px;
+    padding: 0 8px 20px;
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .item {
+    height: 280px;
+    width: 100%;
+  }
+  
+  .thumb {
+    height: 140px;
+  }
+  
+  .item h3 {
+    font-size: 12px;
+    margin: 4px 3px 2px;
+    height: 2.6em;
+  }
+  
+  .meta {
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+  
+  .price {
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+  
+  .ver-produto {
+    padding: 5px 10px;
+    font-size: 10px;
+    margin: 3px auto 6px;
+    opacity: 1; /* Sempre visível no mobile */
+    transform: none;
+    pointer-events: all;
+  }
+  
+  /* Banner em celulares */
+  .banner-slide img {
+    height: 150px;
+  }
+  
+  .banner-prev, .banner-next {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+  
+  .banner-prev {
+    left: 5px;
+  }
+  
+  .banner-next {
+    right: 5px;
+  }
+  
+  .banner-dots {
+    bottom: 8px;
+  }
+  
+  .banner-dots button {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* Lightbox em celulares */
+  .lightbox {
+    padding: 5px;
+  }
+  
+  .lightbox img {
+    max-width: 98%;
+    max-height: 45%;
+  }
+  
+  .lightbox .close {
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+  }
+  
+  .lightbox .prev,
+  .lightbox .next {
+    font-size: 20px;
+  }
+  
+  .lightbox .prev {
+    left: 5px;
+  }
+  
+  .lightbox .next {
+    right: 5px;
+  }
+  
+  .thumbnails img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Celulares muito pequenos */
+@media (max-width: 360px) {
+  .catalogo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 5px 15px;
+  }
+  
+  .item {
+    height: 260px;
+  }
+  
+  .thumb {
+    height: 120px;
+  }
+  
+  .categorias button {
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+  
+  .banner-slide img {
+    height: 130px;
+  }
+  
+  .item h3 {
+    font-size: 11px;
+  }
+  
+  .price {
+    font-size: 12px;
+  }
+  
+  .ver-produto {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+}
+
+/* ===== CORREÇÕES ESPECÍFICAS ===== */
+
+/* Garante que as imagens não ultrapassem os containers */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Corrige overflow horizontal */
+body {
+  overflow-x: hidden;
+}
+
+/* Melhora a visualização dos botões de categoria no mobile */
+.categorias::-webkit-scrollbar {
+  display: none;
+}
+
+.categorias {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+/* Garante que os itens do catálogo não quebram layout */
+.catalogo > * {
+  min-width: 0; /* Permite que os itens encolham */
+}
+
+/* Ajusta o botão ver produto para mobile */
+@media (max-width: 768px) {
+  .item .ver-produto {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: all !important;
+  }
+}
 

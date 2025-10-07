@@ -154,5 +154,80 @@ prevBtn.addEventListener('click', () => {
 showSlide(slideIndex);
 startAutoSlide();
 
+// Suporte a swipe no banner para mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+const bannerContainer = document.querySelector('.banner-container');
+
+function handleTouchStart(e) {
+  touchStartX = e.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(e) {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}
+
+function handleSwipe() {
+  const swipeThreshold = 50;
+  
+  if (touchEndX < touchStartX - swipeThreshold) {
+    // Swipe left - next
+    stopAutoSlide();
+    nextSlide();
+    startAutoSlide();
+  }
+  
+  if (touchEndX > touchStartX + swipeThreshold) {
+    // Swipe right - prev
+    stopAutoSlide();
+    prevSlide();
+    startAutoSlide();
+  }
+}
+
+// Adicionar event listeners para swipe
+if (bannerContainer) {
+  bannerContainer.addEventListener('touchstart', handleTouchStart, false);
+  bannerContainer.addEventListener('touchend', handleTouchEnd, false);
+}
+
+// Otimização de performance para mobile
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+}
+
+// Aplicar throttle em eventos de resize
+window.addEventListener('resize', throttle(function() {
+  // Recalculos necessários se precisar
+}, 250));
+
+function optimizeForMobile() {
+  // Detecta se é mobile
+  const isMobile = window.innerWidth <= 768;
+  
+  if (isMobile) {
+    // Otimizações específicas para mobile
+    document.body.classList.add('mobile-device');
+    
+    // Ajusta o comportamento do lightbox para touch
+    lightbox.style.touchAction = 'pan-y';
+    
+    // Melhora o performance do scroll
+    document.addEventListener('touchmove', function(e) {
+      if (e.scale !== 1) e.preventDefault();
+    }, { passive: false });
+  }
+}
 
 });
