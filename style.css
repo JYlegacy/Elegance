@@ -841,12 +841,14 @@ body {
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
+  width: 40px; /* Largura fixa */
+  height: 40px; /* Altura fixa */
 }
 
 .social-icon {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+  width: 80%; /* Ocupa 100% do container */
+  height: 80%; /* Ocupa 100% do container */
+  object-fit: contain; /* Mantém a proporção sem distorcer */
   transition: all 0.3s ease;
 }
 
@@ -878,7 +880,7 @@ body {
   gap: 0;
   flex-wrap: nowrap;
   overflow-x: auto;
-  margin-top: 20px; /* 👈 Adiciona espaço para a logo e ícones */
+  margin-top: 20px; /* 👈 Aumentei o espaço para a logo e ícones */
   position: relative;
   z-index: 5;
 }
@@ -892,9 +894,9 @@ body {
     margin-bottom: 8px;
   }
   
-  .social-icon {
-    width: 28px;
-    height: 28px;
+  .social-link {
+    width: 35px;
+    height: 35px;
   }
   
   .social-icons {
@@ -902,7 +904,7 @@ body {
   }
   
   .categorias {
-    margin-top: 40px; /* Menos espaço em tablets */
+    margin-top: 10px;
   }
 }
 
@@ -913,9 +915,9 @@ body {
     margin-bottom: 6px;
   }
   
-  .social-icon {
-    width: 24px;
-    height: 24px;
+  .social-link {
+    width: 30px;
+    height: 30px;
   }
   
   .social-icons {
@@ -927,16 +929,16 @@ body {
   }
   
   .categorias {
-    margin-top: 35px; /* Menos espaço em celulares */
-    justify-content: flex-start; /* Permite scroll horizontal */
+    margin-top: 10px;
+    justify-content: flex-start;
   }
 }
 
 /* Celulares muito pequenos */
 @media (max-width: 360px) {
-  .social-icon {
-    width: 22px;
-    height: 22px;
+  .social-link {
+    width: 28px;
+    height: 28px;
   }
   
   .social-icons {
@@ -948,6 +950,6 @@ body {
   }
   
   .categorias {
-    margin-top: 30px; /* Ainda menos espaço em telas muito pequenas */
+    margin-top: 10px;
   }
 }
