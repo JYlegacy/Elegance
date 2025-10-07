@@ -814,3 +814,140 @@ body {
   }
 }
 
+
+
+
+
+/* ===== HEADER TOP - LOGO E ÍCONES SOCIAIS ===== */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-left: auto; /* Empurra os ícones para a direita */
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+}
+
+.social-link:hover .social-icon {
+  filter: brightness(1.2);
+}
+
+/* Centralizar a logo */
+.header-top .logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* ===== CORREÇÃO DO MENU DE CATEGORIAS ===== */
+.categorias {
+  width: 100%;
+  background: #f1f1f1;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin-top: 20px; /* 👈 Adiciona espaço para a logo e ícones */
+  position: relative;
+  z-index: 5;
+}
+
+/* ===== RESPONSIVIDADE PARA OS ÍCONES SOCIAIS ===== */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .header-top {
+    padding: 0 15px;
+    margin-bottom: 8px;
+  }
+  
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .social-icons {
+    gap: 10px;
+  }
+  
+  .categorias {
+    margin-top: 40px; /* Menos espaço em tablets */
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .header-top {
+    padding: 0 10px;
+    margin-bottom: 6px;
+  }
+  
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .social-icons {
+    gap: 8px;
+  }
+  
+  .header-top .logo {
+    max-width: 100px;
+  }
+  
+  .categorias {
+    margin-top: 35px; /* Menos espaço em celulares */
+    justify-content: flex-start; /* Permite scroll horizontal */
+  }
+}
+
+/* Celulares muito pequenos */
+@media (max-width: 360px) {
+  .social-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .social-icons {
+    gap: 6px;
+  }
+  
+  .header-top .logo {
+    max-width: 90px;
+  }
+  
+  .categorias {
+    margin-top: 30px; /* Ainda menos espaço em telas muito pequenas */
+  }
+}
