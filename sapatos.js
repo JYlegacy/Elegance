@@ -1,10 +1,16 @@
 const itensSapatos = [
   {
     categoria: "sapatos",
-    thumb: "img/sapato1.jpg",
-    titulo: "Tênis Casual Branco (Exemplo)",
-    meta: "Masculino • Couro sintético",
+    thumb: "sapatos/Tênis Beatriz Anabela Médio Branco Neve com Lima/01.webp",
+    titulo: "Tênis Beatriz Anabela Médio Branco Neve com Lima",
+    meta: "Feminino • Couro sintético",
     preco: "R$ 289,00",
-    imagens: Array(5).fill("img/sapato1.jpg")
+    "imagens": [
+      "sapatos/Tênis Beatriz Anabela Médio Branco Neve com Lima/01.webp",
+      "sapatos/Tênis Beatriz Anabela Médio Branco Neve com Lima/02.webp",
+      "sapatos/Tênis Beatriz Anabela Médio Branco Neve com Lima/03.webp",
+      "sapatos/Tênis Beatriz Anabela Médio Branco Neve com Lima/04.webp",
+	  "sapatos/Tênis Beatriz Anabela Médio Branco Neve com Lima/05.webp",
+    ]
   }
 ];
